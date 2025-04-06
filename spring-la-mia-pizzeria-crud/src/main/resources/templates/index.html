@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{'/fragments/headFragment' :: head}">
+    <title>Home</title>
+</div>
+
+<body>
+    <div th:insert="~{'/fragments/headerFragment' :: header}"></div>
+
+    <main class="container mt-5 border border-black">
+        <div class="contanier row text-center">
+            <div>
+                <h1 class="mt-2">Benvenuto alla pizzeria DaLuca</h1>
+            </div>
+            <div>
+                <h4 class="mt-3">Vasta scelta di pizze da provare, scegli quella che ti rappresenta di più!</h4>
+            </div>
+
+            <div class="mt-5" th:if="${list.isEmpty()}">
+                <p>La lista è vuota</p>
+            </div>
+        </div>
+
+        <div th:unless="${list.isEmpty()}">
+            <div class="container mt-5">
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Descrizione
+                            </th>
+                            <th>
+                                Immagine
+                            </th>
+                            <th>
+                                Prezzo
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pizza : ${list}">
+                            <td th:text="${pizza.nome}"></td>
+                            <td th:text="${pizza.descrizione}"></td>
+                            <td th:text="${pizza.url}"></td>
+                            <td th:text="${pizza.prezzo + ' &euro;'}"></td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
