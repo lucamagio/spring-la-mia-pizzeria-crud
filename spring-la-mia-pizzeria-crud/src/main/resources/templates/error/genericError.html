@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:insert="~{'/fragments/headFragment' :: head}">
+    <title>Generic Error</title>
+</div>
+
+<body>
+    <h1 th:text="|Errore per il seguente motivo: ${errorCause}|"></h1>
+</body>
+
+</html>

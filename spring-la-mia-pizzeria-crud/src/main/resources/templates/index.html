@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div th:insert="~{'/fragments/headFragment' :: head}">
+<head th:replace="~{'/fragments/headFragment' :: head}">
     <title>Home</title>
-</div>
+</head>
 
 <body>
     <div th:insert="~{'/fragments/headerFragment' :: header}"></div>
@@ -39,6 +39,9 @@
                             <th>
                                 Prezzo
                             </th>
+                            <th class="text-center">
+                                Dettagli
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +50,9 @@
                             <td th:text="${pizza.descrizione}"></td>
                             <td th:text="${pizza.url}"></td>
                             <td th:text="${pizza.prezzo + ' &euro;'}"></td>
+                            <td class="text-center">
+                                <a class="btn btn-primary" th:href="@{/pizzeria/{id}(id=${pizza.id})}">Dettagli</a>
+                            </td>
                         </tr>
                     </tbody>
     

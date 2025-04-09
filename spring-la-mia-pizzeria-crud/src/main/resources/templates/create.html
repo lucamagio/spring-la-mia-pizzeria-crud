@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{'/fragments/headFragment' :: head}">
+    <title>Create new pizza</title>
+</head>
+
+<body>
+    <div th:insert="~{'/fragments/headerFragment' :: header}"></div>
+
+    <main class="container border border-black mt-5">
+        <h1>Pizza</h1>
+        </hr>
+
+        <form id="pizza-form" th:object="${pizza}" th:action="@{/pizzeria/create}" method="post">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Descrizione</label>
+                            <input type="text" class="form-control" id="descrizione" th:field="*{descrizione}" th:errorClass="is-invalid">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Immagine</label>
+                            <input type="text" class="form-control" id="url" th:field="*{url}" th:errorClass="is-invalid">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Prezzo</label>
+                            <input type="number" step="0.01" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
+                        </div>
+
+                        <div class="col-12 mt-3 mb-3">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <a class="btn btn-danger" th:href="@{/pizzeria/}">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+</body>
+
+</html>

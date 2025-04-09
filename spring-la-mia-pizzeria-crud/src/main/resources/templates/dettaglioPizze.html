@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{'/fragments/headFragment' :: head}">
+    <title>Dettaglio Pizze</title>
+</head>
+
+<body>
+    <div th:insert="~{'/fragments/headerFragment' :: header}"></div>
+
+    <main class="container border border-black mt-5 text-center">
+        <div>
+            <h1 th:text="${pizza.nome}"></h1>
+        </div>
+        <div class="mt-3">
+            <p th:text="${pizza.descrizione}"></p>
+        </div>
+        <div class="mt-5">
+            <p th:text="${pizza.url}"></p>
+        </div>
+        <div>
+            <p th:text="${pizza.prezzo} + ' &euro;'"></p>
+        </div>
+    </main>
+</body>
+
+</html>
