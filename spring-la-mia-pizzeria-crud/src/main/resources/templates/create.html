@@ -18,6 +18,9 @@
                         <div class="col-12">
                             <label class="form-label">Nome</label>
                             <input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
+                            <ul th:if="${#fields.hasErrors('nome')}">
+                                <li th:each="err : ${#fields.errors('nome')}" class="text-danger" th:text="${err}"></li>
+                            </ul>
                         </div>
 
                         <div class="col-12">
@@ -33,6 +36,9 @@
                         <div class="col-12">
                             <label class="form-label">Prezzo</label>
                             <input type="number" step="0.01" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
+                            <ul th:if="${#fields.hasErrors('prezzo')}">
+                                <li th:each="err : ${#fields.errors('prezzo')}" class="text-danger" th:text="${err}"></li>
+                            </ul>
                         </div>
 
                         <div class="col-12 mt-3 mb-3">

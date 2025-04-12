@@ -14,11 +14,14 @@
         <div class="mt-3">
             <p th:text="${pizza.descrizione}"></p>
         </div>
-        <div class="mt-5">
+        <div class="mt-3">
             <p th:text="${pizza.url}"></p>
         </div>
         <div>
             <p th:text="${pizza.prezzo} + ' &euro;'"></p>
+        </div>
+        <div class="mt-5 mb-3">
+            <a class="btn btn-primary" aria-current="page" th:href="@{/pizzeria/}"><i class="fas fa-home"></i></a>
         </div>
     </main>
 </body>

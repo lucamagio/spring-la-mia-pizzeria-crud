@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name="Pizzeria")
@@ -15,6 +18,7 @@ public class Pizza {
     @GeneratedValue(strategy=GenerationType.IDENTITY) //serve per settare l'auto increment
     private Integer id;
 
+    @NotBlank(message = "Il nome è obbligatorio")
     private String nome;
 
     private String descrizione;
@@ -22,6 +26,8 @@ public class Pizza {
     @Column(length = 2083)
     private String url;
 
+    @NotNull(message = "Il prezzo è obbligatorio")
+    @Positive
     private Double prezzo;
 
     
