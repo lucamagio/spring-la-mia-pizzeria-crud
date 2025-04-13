@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,6 +20,8 @@ import it.lessons.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -76,6 +79,41 @@ public class PizzeriaController {
         redirectAttributes.addFlashAttribute("successMessage", "Pizza Created!");
         return "redirect:/pizzeria/";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("pizza", pizzaRepository.findById(id).get());
+        
+        return "edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
+
+        //Pizza dbPizza = pizzaRepository.findById(formPizza.getId()).get(); 
+        //da utilizzare se ci sono dei campi che non vogliamo che cambino e quindi si utilizza per aggiungere un errore
+        //if (!dbPizza.getNome().equals(formPizza.getNome())) {
+        //    bindingResult.addError(new ObjectError("nome", "Il nome non può essere cambiato"));
+        //}
+        
+        if(bindingResult.hasErrors()){
+            return "edit";
+        }
+        
+        pizzaRepository.save(formPizza);
+
+        return "redirect:/pizzeria/";
+    }
+    
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        
+        pizzaRepository.deleteById(id);
+        
+        return "redirect:/pizzeria/";
+    }
+    
+    
     
     
 }

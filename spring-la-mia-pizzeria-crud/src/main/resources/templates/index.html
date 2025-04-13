@@ -49,6 +49,12 @@
                             <th class="text-center">
                                 Dettagli
                             </th>
+                            <th class="text-center">
+                                Modifica
+                            </th>
+                            <th class="text-center">
+                                Cancella
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,9 +64,19 @@
                             <td th:text="${pizza.url}"></td>
                             <td th:text="${pizza.prezzo + ' &euro;'}"></td>
                             <td class="text-center">
-                                <a class="btn btn-outline-info" th:href="@{/pizzeria/{id}(id=${pizza.id})}" title="Dettagli">
+                                <a class="btn btn-outline-info" th:href="@{'/pizzeria/{id}'(id=${pizza.id})}" title="Dettagli">
                                     <i class="fas fa-pizza-slice"></i>
                                 </a>                                
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-outline-info" th:href="@{'/pizzeria/edit/{id}'(id=${pizza.id})}" title="Modifica">
+                                    <i class="fas fa-pencil"></i>
+                                </a>                                
+                            </td>
+                            <td class="text-center">
+                                <form action="#" th:action="@{'/pizzeria/delete/{id}'(id=${pizza.id})}" method="post">
+                                    <button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Sei sicuro?')"><i class="fas fa-trash-alt"></i></button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
